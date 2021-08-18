@@ -1,5 +1,5 @@
 [![Code Climate](https://lzw.me/images/logo.png)](https://lzw.me)
-[![@lzwme/git-repo-sync](https://nodei.co/npm/@lzwme/git-repo-sync.png)](npm-url)
+[![@lzwme/git-repo-sync](https://nodei.co/npm/@lzwme/git-repo-sync.png)][npm-url]
 
 # @lzwme/git-repo-sync
 

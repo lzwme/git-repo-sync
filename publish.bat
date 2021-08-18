@@ -1,2 +1,2 @@
-npm run release && npm publish --access=public --registry=https://registry.npmjs.org
+npm unpublish --access=public --registry=https://registry.npmjs.org
 pause
