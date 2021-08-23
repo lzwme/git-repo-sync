@@ -57,4 +57,17 @@ module.exports = {
       ],
     },
   ],
+  /** git 同步选项 */
+  git: {
+    /** 是否执行 commit */
+    commit: true,
+    /** 是否执行 rebase。适合多人协作的场景 */
+    rebase: false,
+    /** 是否执行 push */
+    push: false,
+    /** 是否跳过 git hooks。默认 false */
+    noVerify: false,
+  },
+  /** 在 dest 同步目录执行的命令列表 */
+  cmds: [],
 };

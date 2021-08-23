@@ -5,7 +5,7 @@ const chalk = require('chalk');
 const { program } = require('commander');
 const path = require('path');
 const pkg = require('../package.json');
-const { syncDefaultOptions, sync } = require('../lib');
+const { syncDefaultOptions, grs } = require('../lib');
 
 const startTime = Date.now();
 
@@ -27,6 +27,9 @@ program
   .option('-r, --replace <rules...>', '替换规则，格式：<from>$$<to>$$<filename>', syncDefaultOptions.dest)
   .option('--include <rules...>', '文件包含')
   .option('--exclude <rules...>', '文件排除')
+  .option('--git-commit', '是否同步 git 提交信息')
+  .option('--git-rebase', '同步 git 时，是否执行 rebase')
+  .option('--git-push', '同步 git 时，是否执行 push')
   .action(opts => {
     if (opts.debug) console.log('CMD args:', opts);
 
@@ -51,7 +54,14 @@ program
       });
     }
 
-    sync(opts);
+    if (opts.gitCommit) {
+      if (!opts.git) opts.git = {};
+      opts.git.commit = true;
+      if (opts.gitPush) opts.git.push = true;
+      if (opts.gitRebase) opts.git.rebase = true;
+    }
+
+    grs.sync(opts);
     logEnd();
   });
 
