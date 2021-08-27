@@ -6,6 +6,7 @@ const { program } = require('commander');
 const path = require('path');
 const pkg = require('../package.json');
 const { syncDefaultOptions, grs } = require('../lib');
+const fs = require('fs');
 
 const startTime = Date.now();
 
@@ -63,6 +64,45 @@ program
 
     grs.sync(opts);
     logEnd();
+  });
+
+program
+  .command('config')
+  .description('生成或获取在当前目录下的配置信息')
+  .option('-n, --name <configPath>', '配置文件的名称', '.grs.config.js')
+  .option('--init', '创建配置文件，若已存在则忽略')
+  .option('--get', '创建配置文件')
+  .action((options, p) => {
+
+    if (options.init) {
+      let name = String(options.name || '.grs.config.js');
+      if (!name.endsWith('.js')) name += '.js';
+      const configPath = path.resolve(process.cwd(), name);
+
+      if (fs.existsSync(configPath)) {
+        console.log('配置文件已存在：', chalk.yellowBright(configPath));
+        return;
+      }
+
+      fs.createReadStream(path.resolve(__dirname, '../.grs.config.sample.js')).pipe(fs.createWriteStream(configPath));
+      console.log('配置文件创建成功！路径为：', chalk.greenBright(configPath));
+    } else if (options.get) {
+      let name = String(options.name || '.grs.config.js');
+      if (!name.endsWith('.js')) name += '.js';
+      const configPath = path.resolve(process.cwd(), name);
+      const cfg = {};
+
+      if (fs.existsSync(configPath)) {
+        Object.assign(cfg, require(configPath));
+        console.log(chalk.cyanBright('配置文件信息：\n'), cfg);
+      } else {
+        console.log(chalk.yellowBright('没有发现配置文件. 默认配置信息：\n'), syncDefaultOptions);
+
+      }
+
+    } else {
+      p.help();
+    }
   });
 
 program.parse(process.argv);
