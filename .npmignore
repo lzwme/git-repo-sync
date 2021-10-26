@@ -11,11 +11,13 @@ tslint.json
 .prettierignore
 .vscode
 build/docs
+docs
 **/*.spec.*
 coverage
 .nyc_output
 *.log
 yarn.lock
+package-lock.json
 commitlint.config.js
 .editorconfig
 publish.bat
