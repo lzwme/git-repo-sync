@@ -7,7 +7,22 @@
     "reposync": "bin/reposync.js",
     "grs": "bin/reposync.js"
   },
+  "repository": "http://github.com/lzwme/git-repo-sync.git",
+  "author": {
+    "name": "renxia",
+    "email": "lzwy0820@qq.com",
+    "url": "https://lzw.me"
+  },
   "license": "MIT",
+  "private": false,
+  "keywords": [
+    "git",
+    "repo",
+    "sync",
+    "git commit",
+    "repository-sync",
+    "synchronization"
+  ],
   "dependencies": {
     "chalk": "^4.1.2",
     "commander": "^8.1.0"
