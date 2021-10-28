@@ -28,7 +28,15 @@
 
 **示例：**
 
+初始化一个同步目录：
+
+![](docs/grs-sync-0.png)
+
+执行 grs 同步（无更新）：
+
 ![](docs/grs-sync-1.png)
+
+执行 grs 同步（有更新）：
 
 ![](docs/grs-sync-2.png)
 

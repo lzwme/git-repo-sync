@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // @ts-check
 
-const chalk = require('chalk');
+const color = require('console-log-colors').color;
 const { program } = require('commander');
 const path = require('path');
 const pkg = require('../package.json');
@@ -12,13 +12,13 @@ const startTime = Date.now();
 
 function logEnd() {
   const constTime = Date.now() - startTime;
-  console.log(`\n[${chalk.greenBright(new Date().toTimeString().slice(0, 8))}] Done in ${constTime}ms.`);
+  console.log(`\n[${color.greenBright(new Date().toTimeString().slice(0, 8))}] Done in ${constTime}ms.`);
 }
 
 program
   .aliases(['grs'])
   .version(pkg.version, '-v, --version')
-  .description(chalk.yellow(pkg.description) + ` [version@${chalk.cyanBright(pkg.version)}]`)
+  .description(color.yellow(pkg.description) + ` [version@${color.cyanBright(pkg.version)}]`)
   .option('-s, --silent', '开启静默模式，只打印必要的信息')
   .option('--debug', `开启调试模式`, false)
   .option('--silent', `开启调试模式`, false)
@@ -80,12 +80,12 @@ program
       const configPath = path.resolve(process.cwd(), name);
 
       if (fs.existsSync(configPath)) {
-        console.log('配置文件已存在：', chalk.yellowBright(configPath));
+        console.log('配置文件已存在：', color.yellowBright(configPath));
         return;
       }
 
       fs.createReadStream(path.resolve(__dirname, '../.grs.config.sample.js')).pipe(fs.createWriteStream(configPath));
-      console.log('配置文件创建成功！路径为：', chalk.greenBright(configPath));
+      console.log('配置文件创建成功！路径为：', color.greenBright(configPath));
     } else if (options.get) {
       let name = String(options.name || '.grs.config.js');
       if (!name.endsWith('.js')) name += '.js';
@@ -94,9 +94,9 @@ program
 
       if (fs.existsSync(configPath)) {
         Object.assign(cfg, require(configPath));
-        console.log(chalk.cyanBright('配置文件信息：\n'), cfg);
+        console.log(color.cyanBright('配置文件信息：\n'), cfg);
       } else {
-        console.log(chalk.yellowBright('没有发现配置文件. 默认配置信息：\n'), syncDefaultOptions);
+        console.log(color.yellowBright('没有发现配置文件. 默认配置信息：\n'), syncDefaultOptions);
 
       }
 

@@ -7,12 +7,11 @@
     "reposync": "bin/reposync.js",
     "grs": "bin/reposync.js"
   },
-  "repository": "http://github.com/lzwme/git-repo-sync.git",
-  "author": {
-    "name": "renxia",
-    "email": "lzwy0820@qq.com",
-    "url": "https://lzw.me"
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/lzwme/git-repo-sync.git"
   },
+  "author": "renxia <lzwy0820@qq.com> (https://lzw.me)",
   "license": "MIT",
   "private": false,
   "keywords": [
@@ -24,7 +23,15 @@
     "synchronization"
   ],
   "dependencies": {
-    "chalk": "^4.1.2",
+    "console-log-colors": "^0.2.2",
     "commander": "^8.1.0"
+  },
+  "bugs": {
+    "url": "https://github.com/lzwme/git-repo-sync/issues"
+  },
+  "homepage": "https://github.com/lzwme/git-repo-sync#readme",
+  "directories": {
+    "doc": "docs",
+    "lib": "lib"
   }
 }

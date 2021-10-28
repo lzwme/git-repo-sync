@@ -16,8 +16,9 @@ docs
 coverage
 .nyc_output
 *.log
-yarn.lock
 package-lock.json
+yarn.lock
+pnpm-lock.yaml
 commitlint.config.js
 .editorconfig
 publish.bat
