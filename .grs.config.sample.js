@@ -3,6 +3,7 @@
 
 const path = require('path');
 
+/** @type {import('@lzwme/git-repo-sync').Options} */
 module.exports = {
   src: process.cwd(),
   dest: path.resolve(process.cwd(), `../${path.basename(process.cwd())}-sync`),
@@ -71,7 +72,7 @@ module.exports = {
   /** 要执行的命令列表 */
   cmds: {
     /** git sync 之前执行的命令 */
-    gitBefore: [],
+    // gitBefore: [`pnpm i`],
     /** git sync 之后执行的命令 */
     gitAfter: [],
   },

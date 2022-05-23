@@ -1,8 +1,7 @@
 src
 test
 test-cases
-tsconfig.json
-tsconfig.module.json
+tsconfig.*
 tslint.json
 .travis.yml
 .gitlab-ci.yml

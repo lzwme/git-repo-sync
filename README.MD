@@ -8,7 +8,6 @@
 [![GitHub issues][issues-badge]][issues-url]
 [![GitHub forks][forks-badge]][forks-url]
 [![GitHub stars][stars-badge]][stars-url]
-[![minzipped size][bundlephobia-badge]][bundlephobia-url]
 
 `git` 多仓库代码同步辅助工具。
 
@@ -43,9 +42,12 @@
 ## 安装
 
 ```bash
-npm i @lzwme/git-repo-sync
+# use npm
+npm i -D @lzwme/git-repo-sync
 # use yarn
-yarn add @lzwme/git-repo-sync
+yarn add -D @lzwme/git-repo-sync
+# use pnpm
+yarn add -D @lzwme/git-repo-sync
 ```
 
 ## 使用
@@ -78,10 +80,9 @@ yarn add .husky/post-commit "yarn grs -c .grs.config.js"
 提供了如下 API 调用方式：
 
 ```ts
-import { grs, syncDefaultOptions } from '@lzwme/git-repo-sync';
+import { grs } from '@lzwme/git-repo-sync';
 
-const total = srs.sync({
-  ...syncDefaultOptions,
+const total = grs.sync({
   silent: true,
   git: {
     commit: true,

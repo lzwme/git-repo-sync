@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "commonjs",
+    "outDir": "lib",
+    "moduleResolution": "node",
+    "inlineSourceMap": false,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    /* Debugging Options */
+    "traceResolution": false,
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "pretty": true,
+    "paths": {
+      "@lzwme/git-repo-sync": ["./"]
+    },
+
+    "lib": ["DOM", "esnext"],
+    "typeRoots": ["./node_modules/@types"]
+  },
+  "exclude": ["node_modules/**"],
+  "include": ["**/*.ts"],
+  "compileOnSave": false
+}
