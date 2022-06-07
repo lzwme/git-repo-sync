@@ -5,7 +5,7 @@ const color = require('console-log-colors').color;
 const { program } = require('commander');
 const path = require('path');
 const pkg = require('../package.json');
-const { syncDefaultOptions, grs } = require('../lib');
+const { syncDefaultOptions, grs } = require('../dist');
 const fs = require('fs');
 
 const startTime = Date.now();
@@ -21,11 +21,10 @@ program
   .description(color.yellow(pkg.description) + ` [version@${color.cyanBright(pkg.version)}]`)
   .option('-s, --silent', '开启静默模式，只打印必要的信息')
   .option('--debug', `开启调试模式`, false)
-  .option('--silent', `开启调试模式`, false)
-  .option('-c, --config', `指定配置文件路径。默认为当前目录下 .grs.config.js`, false)
+  .option('-c, --config', `指定配置文件路径。默认为当前目录下 .grs.config.js`)
   .option('-s, --src', '源仓库路径', syncDefaultOptions.src)
-  .option('-d, --dest', '输出仓库路径', syncDefaultOptions.dest)
-  .option('-r, --replace <rules...>', '替换规则，格式：<from>$$<to>$$<filename>', syncDefaultOptions.dest)
+  .option('-d, --dest', '输出仓库路径')
+  .option('-r, --replace <rules...>', '替换规则，格式：<from>$$<to>$$<filename>')
   .option('--include <rules...>', '文件包含')
   .option('--exclude <rules...>', '文件排除')
   .option('--git-commit', '是否同步 git 提交信息')

@@ -2,8 +2,8 @@
   "name": "@lzwme/git-repo-sync",
   "version": "1.0.1",
   "description": "a tool for git repo sync",
-  "main": "lib/index.js",
-  "type": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "typing": "dist/index.d.ts",
   "scripts": {
     "build": "tsc -P tsconfig.cjs.json"
   },

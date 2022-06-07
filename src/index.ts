@@ -242,10 +242,10 @@ export class GRS {
   }
 }
 
-exports.grs = new GRS();
+export const grs = new GRS();
 
 /** 简易的对象深复制 */
-function assign(a, b) {
+export function assign(a, b) {
   if (!a || !b) return a;
   if (typeof b !== "object" || b instanceof RegExp || Array.isArray(b)) return a;
 
