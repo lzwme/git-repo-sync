@@ -8,7 +8,7 @@ module.exports = {
   src: process.cwd(),
   dest: path.resolve(process.cwd(), `../${path.basename(process.cwd())}-sync`),
   silent: false,
-  exclude: [/(\/|\\)\.git(\/|\\)/, 'dist', '.nyc', 'node_modules', '.grs.config.js'],
+  exclude: [/\/\.git\//, '/dist', '.nyc', 'node_modules', '.grs.config.js'],
   // include: ['src', 'package.json', 'readme.md'],
   // replaceRules: [
   //   {

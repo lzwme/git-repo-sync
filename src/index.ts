@@ -47,7 +47,7 @@ export const syncDefaultOptions: Options = {
   dest: resolve(process.cwd(), `../${basename(process.cwd())}-sync`),
   debug: false,
   silent: false,
-  exclude: [/(\/|\\)\.git(\/|\\)/, "dist", ".nyc", "node_modules", ".grs.config.js"],
+  exclude: ['/.git/', "dist", ".nyc", "node_modules", ".grs.config.js"],
   include: [],
   replaceRules: [
     {
@@ -105,19 +105,21 @@ export class GRS {
     return this.options;
   }
 
-  private fileFilter(name = "") {
+  private fileFilter(pathname = "") {
     const opts = this.options;
 
-    if (!name || [".", "..", "'.."].includes(name)) return false;
+    if (!pathname || [".", "..", "'.."].includes(pathname)) return false;
+
+    pathname = pathname.replace(/\\/g, '/');
 
     if (opts.exclude.length) {
-      const o = opts.exclude.some((rule) => rule && new RegExp(rule, "i").test(name));
+      const o = opts.exclude.some((rule) => rule && new RegExp(rule, "i").test(pathname));
 
       if (o) return false;
     }
 
     if (opts.include.length) {
-      return opts.include.some((rule) => rule && new RegExp(rule, "i").test(name));
+      return opts.include.some((rule) => rule && new RegExp(rule, "i").test(pathname));
     }
 
     return true;
