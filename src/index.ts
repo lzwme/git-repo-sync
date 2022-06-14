@@ -185,17 +185,22 @@ export class GRS {
     if (!opts.git.commit) return;
     if (opts.debug) this.printLog("Start Git Sync");
 
+    if (!fs.existsSync(resolve(opts.dest, '.git'))) {
+      this.printLog(color.yellowBright('Not a git repository.'));
+      return;
+    }
+
     const srcChangedList = execSync(`git diff HEAD --name-only`, { cwd: opts.src, encoding: "utf-8" }).trim();
 
     if (srcChangedList.length) {
-      this.printLog(color.yellowBright("源目录存在未提交的变更，忽略 git 同步"));
+      this.printLog(color.yellowBright("Ignore git commit sync. There are uncommitted changes in the source directory."));
       return;
     }
 
     const destChangedList = execSync(`git diff HEAD --name-only`, { cwd: opts.dest, encoding: "utf-8" }).trim();
 
     if (!destChangedList.length) {
-      this.printLog(color.yellowBright("没有新文件更新"));
+      this.printLog(color.yellowBright("No file updates"));
       return;
     }
 
@@ -204,7 +209,7 @@ export class GRS {
 
     if (opts.debug) this.printLog(`\n src:`, latestComment, `\ndest:`, destComment);
     if (latestComment === destComment) {
-      this.printLog(color.yellowBright("最近一次的提交信息相同，忽略 git commit 同步"));
+      this.printLog(color.yellowBright("Ignore git commit sync. The last commitId is the sanme. Ignore git commit sync."));
       return;
     }
 
@@ -237,9 +242,9 @@ export class GRS {
           if (!filepath.includes(opts.dest) || !fs.existsSync(filepath)) return;
           try {
             fs.rmSync(filepath, { recursive: true });
-            this.printLog(' - Removed:', color.red(filepath));
+            this.printLog(color.green(' - Removed:'), color.red(filepath));
           } catch(e) {
-            this.printLog(' - Failed to try remove file:', color.cyan(filepath), color.redBright(e.message));
+            this.printLog(color.red(' - Failed to try remove file:'), color.cyan(filepath), color.redBright(e.message));
           }
         });
       }
@@ -247,9 +252,9 @@ export class GRS {
 
     this.totalFiles = 0;
 
-    this.printLog("sync start:", color.cyanBright(opts.src), "=>", color.cyanBright(opts.dest));
+    this.printLog("start:", color.cyanBright(opts.src), "=>", color.cyanBright(opts.dest));
     this.dirSync(opts.src);
-    this.printLog("Done! Sync Files Total:", this.totalFiles);
+    this.printLog("Done! Sync Total Files:", this.totalFiles);
 
     this.runCmds(opts.cmds.gitBefore);
     if (this.totalFiles) this.tryGitSync(opts);
