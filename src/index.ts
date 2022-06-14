@@ -12,6 +12,8 @@ export interface Options {
   silent?: boolean;
   exclude?: (string | RegExp)[];
   include?: (string | RegExp)[];
+  /** 同步前需要删除的文件或目录（仅可删除 dest 中的文件或目录） */
+  rmBefore?: string[];
   replaceRules?: {
     /** 文件匹配规则，如不存在则表示匹配所有文件 */
     match?: RegExp | string;
@@ -228,6 +230,19 @@ export class GRS {
     if (!fs.existsSync(opts.dest)) {
       fs.mkdirSync(opts.dest, { recursive: true });
       this.printLog("Create Dest Dir:", opts.dest);
+    } else {
+      if (Array.isArray(opts.rmBefore)) {
+        opts.rmBefore.forEach(filepath => {
+          filepath = resolve(opts.dest, filepath);
+          if (!filepath.includes(opts.dest) || !fs.existsSync(filepath)) return;
+          try {
+            fs.rmSync(filepath, { recursive: true });
+            this.printLog(' - Removed:', color.red(filepath));
+          } catch(e) {
+            this.printLog(' - Failed to try remove file:', color.cyan(filepath), color.redBright(e.message));
+          }
+        });
+      }
     }
 
     this.totalFiles = 0;
