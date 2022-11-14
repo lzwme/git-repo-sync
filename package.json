@@ -1,6 +1,6 @@
 {
   "name": "@lzwme/git-repo-sync",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "a tool for git repo sync",
   "main": "dist/index.js",
   "typing": "dist/index.d.ts",
