@@ -26,14 +26,12 @@ program
   .option('-r, --replace <rules...>', '替换规则，格式：<from>$$<to>$$<filename>')
   .option('--include <rules...>', '文件包含')
   .option('--exclude <rules...>', '文件排除')
-  .option('--git-commit', '是否同步 git 提交信息')
-  .option('--git-rebase', '同步 git 时，是否执行 rebase')
-  .option('--git-push', '同步 git 时，是否执行 push')
+  .option('--no-git-commit', '是否不同步 git 提交信息')
+  .option('--no-git-rebase', '同步 git 时，是否不执行 rebase')
+  .option('--no-git-push', '同步 git 时，是否不执行 push')
   .option('-n, --git-n', '同步 git 时，是否添加 --no-verify 参数')
   .option('--git-after <cmds...>', '同步 git 结束后执行的命令')
   .action((opts: Options & Record<string, any>) => {
-    if (opts.debug) console.log('CMD args:', opts);
-
     try {
       const configFile = resolve(opts.config || '.grs.config.js');
       const config = require(configFile);
@@ -55,14 +53,14 @@ program
       });
     }
 
-    if (opts.gitCommit) {
-      if (!opts.git) opts.git = {};
-      opts.git.commit = true;
-      if (opts.gitPush) opts.git.push = true;
-      if (opts.gitRebase) opts.git.rebase = true;
-      if (opts.gitN) opts.git.noVerify = true;
-    }
+    if (!opts.git) opts.git = {};
+    if ('gitCommit' in opts) opts.git.commit = opts.gitCommit;
+    if ('gitPush' in opts) opts.git.push = opts.gitPush;
+    if ('gitRebase' in opts) opts.git.rebase = opts.gitRebase;
+    if ('gitN' in opts) opts.git.noVerify = opts.gitN;
+    if (Array.isArray(opts.gitAfter)) opts.cmds.gitAfter = opts.gitAfter;
 
+    if (opts.debug) console.log('opts:', opts);
     grs.sync(opts);
     logEnd();
   });

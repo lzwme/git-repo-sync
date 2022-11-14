@@ -28,7 +28,7 @@ export interface Options {
   git?: {
     /** 是否执行 commit */
     commit?: boolean;
-    /** 是否执行 rebase。适合多人协作的场景 */
+    /** 是否执行 rebase。适合多人协作的场景。默认为 true */
     rebase?: boolean;
     /** 是否执行 push */
     push?: boolean;
@@ -71,9 +71,9 @@ export const syncDefaultOptions: Options = {
     /** 是否执行 commit */
     commit: true,
     /** 是否执行 rebase。适合多人协作的场景 */
-    rebase: false,
+    rebase: true,
     /** 是否执行 push */
-    push: false,
+    push: true,
     /** 是否跳过 git hooks。默认 false */
     noVerify: false,
   },
