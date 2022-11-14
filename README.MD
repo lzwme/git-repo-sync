@@ -192,10 +192,10 @@ yarn dev
 [issues-badge]: https://img.shields.io/github/issues/lzwme/git-repo-sync.svg
 [issues-url]: https://github.com/lzwme/git-repo-sync/issues
 [npm-badge]: https://img.shields.io/npm/v/@lzwme/git-repo-sync.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/@lzwme/git-repo-sync
+[npm-url]: https://npmjs.com/package/@lzwme/git-repo-sync
 [node-badge]: https://img.shields.io/badge/node.js-%3E=_14.0.0-green.svg?style=flat-square
 [node-url]: https://nodejs.org/download/
 [download-badge]: https://img.shields.io/npm/dm/@lzwme/git-repo-sync.svg?style=flat-square
-[download-url]: https://npmjs.org/package/@lzwme/git-repo-sync
+[download-url]: https://npmjs.com/package/@lzwme/git-repo-sync
 [bundlephobia-url]: https://bundlephobia.com/result?p=@lzwme/git-repo-sync@latest
 [bundlephobia-badge]: https://badgen.net/bundlephobia/minzip/@lzwme/git-repo-sync@latest
