@@ -39,11 +39,11 @@
     "lib": "lib"
   },
   "dependencies": {
-    "commander": "^9.4.1",
-    "console-log-colors": "^0.2.3"
+    "commander": "^10.0.0",
+    "console-log-colors": "^0.4.0"
   },
   "devDependencies": {
     "@types/node": "^18",
-    "typescript": "^4.8.4"
+    "typescript": "^5.0.2"
   }
 }
