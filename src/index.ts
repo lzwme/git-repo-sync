@@ -209,7 +209,7 @@ export class GRS {
 
     if (opts.debug) this.printLog(`\n src:`, latestComment, `\ndest:`, destComment);
     if (latestComment === destComment) {
-      this.printLog(color.yellowBright('Ignore git commit sync. The last commitId is the sanme. Ignore git commit sync.'));
+      this.printLog(color.yellowBright('Ignore git commit sync. The last commitId is the same. Ignore git commit sync.'));
       return;
     }
 
