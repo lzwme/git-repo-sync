@@ -18,7 +18,7 @@ program
   .aliases(['grs'])
   .version(pkg.version, '-v, --version')
   .description(color.yellow(pkg.description) + ` [version@${color.cyanBright(pkg.version)}]`)
-  .option('-s, --silent', '开启静默模式，只打印必要的信息')
+  .option('--silent', '开启静默模式，只打印必要的信息')
   .option('--debug', `开启调试模式`, false)
   .option('-c, --config', `指定配置文件路径。默认为当前目录下 .grs.config.js`)
   .option('-s, --src', '源仓库路径', syncDefaultOptions.src)
